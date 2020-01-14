@@ -1,0 +1,22 @@
+receivers:
+  examplereceiver:
+
+processors:
+  exampleprocessor:
+
+exporters:
+  relay:
+  relay/2:
+    url: "http://some.other.location/api/traces"
+    Interval: 50s 
+    Format: json
+    headers:
+      added-entry: "added value"
+      dot.test: tes
+
+service:
+  pipelines:
+    traces:
+      receivers: [examplereceiver]
+      processors: [exampleprocessor]
+      exporters: [relay]
